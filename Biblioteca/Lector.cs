@@ -9,7 +9,6 @@ namespace Biblioteca
 
         private string nombre;
         private int dni;
-        private static int CANT_MAX_LIBROS_PRESTADOS = 3;
         private List<Libro> librosPrestados;
 
 
@@ -24,5 +23,12 @@ namespace Biblioteca
         public string Nombre { get => nombre; set => nombre = value; }
         public int Dni { get => dni; set => dni = value; }
         internal List<Libro> LibrosPrestados { get => librosPrestados; set => librosPrestados = value; }
+
+        public override string ToString()
+        {
+            return "Nombre: "+ nombre + " DNI: "+ dni+ " Libros Prestados: "+ librosPrestados.ToString();
+        }
     }
+
+
 }

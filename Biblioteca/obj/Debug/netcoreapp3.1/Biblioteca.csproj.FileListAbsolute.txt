@@ -11,3 +11,16 @@ C:\Users\P077903\source\repos\Biblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Bibl
 C:\Users\P077903\source\repos\Biblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.dll
 C:\Users\P077903\source\repos\Biblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.pdb
 C:\Users\P077903\source\repos\Biblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.genruntimeconfig.cache
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\bin\Debug\netcoreapp3.1\Biblioteca.exe
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\bin\Debug\netcoreapp3.1\Biblioteca.deps.json
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\bin\Debug\netcoreapp3.1\Biblioteca.runtimeconfig.json
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\bin\Debug\netcoreapp3.1\Biblioteca.runtimeconfig.dev.json
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\bin\Debug\netcoreapp3.1\Biblioteca.dll
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\bin\Debug\netcoreapp3.1\Biblioteca.pdb
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.AssemblyInfoInputs.cache
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.AssemblyInfo.cs
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.csproj.CoreCompileInputs.cache
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.dll
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.pdb
+C:\Users\P077903\Documents\GitHub\IFTSBiblioteca\Biblioteca\obj\Debug\netcoreapp3.1\Biblioteca.genruntimeconfig.cache

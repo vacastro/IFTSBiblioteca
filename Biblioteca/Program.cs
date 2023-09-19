@@ -6,7 +6,8 @@ namespace Biblioteca
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Biblioteca biblioteca = new Biblioteca();
+            biblioteca.menuPrincipal();
         }
     }
 }
