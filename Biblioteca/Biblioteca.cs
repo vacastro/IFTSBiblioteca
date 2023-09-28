@@ -34,27 +34,13 @@ namespace Biblioteca
             return libroBuscado;
         }
 
-        public bool verificarLibro(string titulo)
-        {
-            bool resultado = false;
-            foreach(Libro libro in libros)
-            {
-                if (libro.Titulo.Equals(titulo))
-                {
-                    resultado = true;
-                }
-            }
-
-            return resultado;
-        }
-
         public bool agregarLibro(string titulo, string autor, string editorial)
         {
             bool resultado= false;
 
-            Libro libro;
+            Libro libro = buscarLibro(titulo);
 
-            if(verificarLibro(titulo) == false) {
+            if(libro == null) {
                 libro = new Libro(titulo, autor, editorial);
                 libros.Add(libro);
                 resultado = true;
@@ -74,12 +60,14 @@ namespace Biblioteca
         public bool eliminarLibro(string titulo)
         {
             bool resultado = false;
-            Libro libro;
-            if(buscarLibro(titulo) != null)
+            Libro libro = buscarLibro(titulo);
+            if( libro != null)
             {
-                libro = buscarLibro(titulo);
-                libros.Remove(libro);
-                resultado = true;
+                if (libro.Prestado == false)
+                {
+                    libros.Remove(libro);
+                    resultado = true;
+                }
             }
             return resultado;
         }
@@ -97,26 +85,11 @@ namespace Biblioteca
 
         }
 
-        public bool verificarLector(int dni)
-        {
-            bool resultado = false;
-
-            foreach( Lector lector in lectores)
-            {
-                if (lector.Dni == dni)
-                {
-                    resultado = true;
-                }
-            }
-
-            return resultado;
-        }
-
         public bool agregarLector (string nombre, int dni)
         {
             bool resultado = false;
-            Lector lector;
-            if(verificarLector(dni)== false)
+            Lector lector = buscarLector(dni);
+            if(lector == null)
             {
                 lector = new Lector(nombre, dni);
                 lectores.Add (lector);
@@ -244,9 +217,9 @@ namespace Biblioteca
                         break;
 
                     case 2:
-                        Console.WriteLine("Ingrese el nombre del Lector");
+                        Console.Write("Ingrese el nombre del Lector: ");
                         nombre = Console.ReadLine();
-                        Console.WriteLine("Ingrese el dni del Lector");
+                        Console.Write("Ingrese el dni del Lector: ");
                         dni = int.Parse(Console.ReadLine());
 
                         agregado = agregarLector(nombre, dni);
@@ -261,21 +234,37 @@ namespace Biblioteca
                         break;
 
                     case 3:
-                        Console.WriteLine("Ingrese el titulo del libro a buscar");
+                        Console.Write("Ingrese el titulo del libro a buscar: ");
                         titulo = Console.ReadLine();
                         Libro libro = buscarLibro(titulo);
-                        Console.WriteLine(libro.ToString());
+                        if(libro == null)
+                        {
+                            Console.WriteLine("El libro no existe");
+                        }
+                        else
+                        {
+                            Console.WriteLine(libro.ToString());
+                        }
+                        
                         break;
 
                     case 4:
-                        Console.WriteLine("Ingrese el dni del lector a buscar");
+                        Console.Write("Ingrese el dni del lector a buscar: ");
                         dni = int.Parse(Console.ReadLine());
                         Lector lector = buscarLector(dni);
-                        Console.WriteLine(lector.ToString());
+                        if (lector == null)
+                        {
+                            Console.WriteLine("El lector no existe");
+                        }
+                        else
+                        {
+                            Console.WriteLine(lector.ToString());
+                        }
+                        
                         break;
 
                     case 5:
-                        Console.WriteLine("Ingrese el titulo del libro a eliminar");
+                        Console.Write("Ingrese el titulo del libro a eliminar: ");
                         titulo = Console.ReadLine();
                         eliminado = eliminarLibro(titulo);
                         if (eliminado)
@@ -284,7 +273,7 @@ namespace Biblioteca
                         }
                         else
                         {
-                            Console.WriteLine("No se pudo eliminar el libro");
+                            Console.WriteLine("No se pudo eliminar el libro. El libro no existe o está prestado y deberá ser devuelto primero.");
                         }
                         break;
 
@@ -305,9 +294,9 @@ namespace Biblioteca
                         break;
 
                     case 9:
-                        Console.Write("Ingrese el titulo del libro a devolver");
+                        Console.Write("Ingrese el titulo del libro a devolver: ");
                         titulo = Console.ReadLine();
-                        Console.Write("Ingrese el dni del lector que devuelve el libro");
+                        Console.Write("Ingrese el dni del lector que devuelve el libro: ");
                         dni = int.Parse(Console.ReadLine());
                         Console.WriteLine(devolverLibro(titulo, dni));
                         break;
