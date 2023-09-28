@@ -176,21 +176,17 @@ namespace Biblioteca
 
             if(lectorSolicitante != null && libroDevuelto != null)
             {
-                foreach( Libro libro in lectorSolicitante.LibrosPrestados)
+                if(lectorSolicitante.contieneLibro(libroDevuelto.Titulo))
                 {
-                    if(libro.Titulo.Equals(titulo))
-                    {
-                        resultado = "LIBRO DEVUELTO CON EXITO";
-                        libroDevuelto.Prestado = false;
-                        lectorSolicitante.LibrosPrestados.Remove(libroDevuelto);
-                        break;
-                    }
-                    else
-                    {
-                        resultado = "EL LIBRO QUE QUIERE DEVOLVER, NO ESTA SOLICITADO POR EL LECTOR";
-                        break;
-                    }
+                    resultado = "LIBRO DEVUELTO CON EXITO";
+                    libroDevuelto.Prestado = false;
+                    lectorSolicitante.LibrosPrestados.Remove(libroDevuelto);
                 }
+                else
+                {
+                    resultado = "EL LIBRO QUE QUIERE DEVOLVER, NO ESTA SOLICITADO POR EL LECTOR";
+                }
+
             }else if (libroDevuelto== null)
             {
                 resultado = "LIBRO INEXISTENTE";
@@ -204,34 +200,39 @@ namespace Biblioteca
 
         public void menuPrincipal()
         {
-            bool band;
+            bool band, agregado, eliminado;
+            string titulo, autor, editorial, nombre;
+            int dni;
+
             do
             {
-                band = false;
+                band = true;
                 int i;
-                Console.WriteLine("ELIJA UNA OPCION");
+                Console.WriteLine("\nELIJA UNA OPCION");
                 Console.WriteLine("1. Agregar un nuevo libro");
                 Console.WriteLine("2. Agregar un nuevo lector");
                 Console.WriteLine("3. Buscar libro");
                 Console.WriteLine("4. Buscar lector");
                 Console.WriteLine("5. Eliminar libro");
-                Console.WriteLine("5. Listar libros");
-                Console.WriteLine("6. Listar lectores");
-                Console.WriteLine("7. Prestar libro");
-                Console.WriteLine("8. Devolver libro");
+                Console.WriteLine("6. Listar libros");
+                Console.WriteLine("7. Listar lectores");
+                Console.WriteLine("8. Prestar libro");
+                Console.WriteLine("9. Devolver libro");
+                Console.WriteLine("10. Finalizar Ejecución");
+                Console.Write("\nIngrese Opcion: ");
                 i = int.Parse(Console.ReadLine());
 
                 switch (i)
                 {
                     case 1:
-                        Console.WriteLine("Ingrese el titulo del libro que desea agregar");
-                        string titulo = Console.ReadLine();
-                        Console.WriteLine("Ingrese el autor del libro");
-                        string autor = Console.ReadLine();
-                        Console.WriteLine("Ingrese la editorial");
-                        string editorial = Console.ReadLine();
+                        Console.Write("Ingrese el titulo del libro que desea agregar: ");
+                        titulo = Console.ReadLine();
+                        Console.Write("Ingrese el autor del libro: ");
+                        autor = Console.ReadLine();
+                        Console.Write("Ingrese la editorial: ");
+                        editorial = Console.ReadLine();
 
-                        bool agregado= agregarLibro(titulo, autor, editorial);
+                        agregado = agregarLibro(titulo, autor, editorial);
                         if (agregado)
                         {
                             Console.WriteLine("Libro agregado con exito");
@@ -241,10 +242,83 @@ namespace Biblioteca
                             Console.WriteLine("No se pudo agregar el libro");
                         }
                         break;
+
                     case 2:
+                        Console.WriteLine("Ingrese el nombre del Lector");
+                        nombre = Console.ReadLine();
+                        Console.WriteLine("Ingrese el dni del Lector");
+                        dni = int.Parse(Console.ReadLine());
+
+                        agregado = agregarLector(nombre, dni);
+                        if (agregado)
+                        {
+                            Console.WriteLine("Lector agregado con exito");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se pudo agregar el lector");
+                        }
                         break;
+
+                    case 3:
+                        Console.WriteLine("Ingrese el titulo del libro a buscar");
+                        titulo = Console.ReadLine();
+                        Libro libro = buscarLibro(titulo);
+                        Console.WriteLine(libro.ToString());
+                        break;
+
+                    case 4:
+                        Console.WriteLine("Ingrese el dni del lector a buscar");
+                        dni = int.Parse(Console.ReadLine());
+                        Lector lector = buscarLector(dni);
+                        Console.WriteLine(lector.ToString());
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Ingrese el titulo del libro a eliminar");
+                        titulo = Console.ReadLine();
+                        eliminado = eliminarLibro(titulo);
+                        if (eliminado)
+                        {
+                            Console.WriteLine("Libro eliminado con exito");
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se pudo eliminar el libro");
+                        }
+                        break;
+
+                    case 6:
+                        listarLibros();
+                        break;
+
+                    case 7:
+                        listarLectores();
+                        break;
+
+                    case 8:
+                        Console.Write("Ingrese el titulo del libro a prestar: ");
+                        titulo = Console.ReadLine();
+                        Console.Write("Ingrese el dni del lector que toma el libro prestado: ");
+                        dni = int.Parse(Console.ReadLine());
+                        Console.WriteLine(prestarLibro(titulo, dni));
+                        break;
+
+                    case 9:
+                        Console.Write("Ingrese el titulo del libro a devolver");
+                        titulo = Console.ReadLine();
+                        Console.Write("Ingrese el dni del lector que devuelve el libro");
+                        dni = int.Parse(Console.ReadLine());
+                        Console.WriteLine(devolverLibro(titulo, dni));
+                        break;
+
+                    case 10:
+                        band = false;
+                        break;
+
                     default:
-                    break;
+                        Console.WriteLine("Opcion no válida");
+                        break;
 
                 }
             } while (band);
